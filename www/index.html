@@ -60,17 +60,16 @@ header .ic img{width:22px;height:22px}
 .seatbadge.fresh{animation:bidPop .4s ease}
 .seatbadge.tricks{background:transparent}
 @keyframes bidPulse{to{background:rgba(255,207,74,.18)}}
-@keyframes bidPop{from{transform:scale(.84)}to{transform:scale(1)}}
+@keyframes dealIn{from{opacity:0;transform:translateY(60px) scale(.9)}to{opacity:1;transform:none}}
 .gl div.pulse b{display:inline-block;animation:scorePop .45s ease}
 @keyframes scorePop{from{transform:translateY(3px);opacity:.35}to{transform:none;opacity:1}}
 #me{flex-wrap:wrap;gap:4px 8px}
 #me .seatbadge{font-size:10px}
 #msg.badge-msg{color:var(--acc);font-weight:500}
 #trumpdock{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:16px;background:var(--glass);border:1px solid var(--gb);box-shadow:var(--hi)}
-#trumpdock b{display:block;font-size:10px;letter-spacing:.08em}
+#trumpdock b{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
 #trumpdock small{display:block;color:var(--mute);font-size:11px;letter-spacing:0;font-weight:500}
 #trumpdock .trump-pip{width:32px;height:46px;flex:none;border-radius:6px;display:grid;place-items:center;background:#fff;color:#1b1b24;font-size:24px;border:1px solid rgba(0,0,0,.12)}
-#trumpdock .trump-pip.r{color:var(--red)}
 #trumpdock .backcard{width:32px;height:46px;flex:none;border-radius:6px;border:1px solid #dcdce2;background:repeating-linear-gradient(45deg,rgba(255,255,255,.14) 0 3px,transparent 3px 6px),#1b1b22}
 #trumpdock .cd{--w:32px;flex:none}
 #trumpdock.revealed{animation:trump-in .45s ease}
@@ -136,7 +135,7 @@ header .ic img{width:22px;height:22px}
 .sheet{width:min(440px,100%);max-height:90vh;max-height:90dvh;overflow:auto;border-radius:20px;padding:14px;background:rgba(18,18,24,.96)}
 .sheet p{margin:0 0 10px;font-size:13.5px;color:var(--mute);line-height:1.45}
 .bt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.bt button{min-height:44px;background:rgba(255,255,255,.12);border-radius:99px;padding:8px 4px;font-weight:500}.bt button:disabled{opacity:.28}.bt button:not(:disabled):active{background:var(--acc);color:#000}
+.bt button{min-height:44px;background:rgba(255,255,255,.12);border-radius:99px;padding:8px 4px;font-weight:500;white-space:nowrap}.bt button:disabled{opacity:.28}.bt button:not(:disabled):active{background:var(--acc);color:#000}
 .bt button:has(.cd){background:none;padding:0;border-radius:14px;min-width:0}
 .bt button:has(.cd) .cd{--w:min(62px,16vw)}
 #intro{position:fixed;inset:0;background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top,0px)) 16px max(12px,env(safe-area-inset-bottom,0px));z-index:8}
@@ -194,7 +193,7 @@ function deal(keep){
  for(let i=d.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[d[i],d[j]]=[d[j],d[i]]}
  const n=d.length/4;G.h=keep?G.h0.map(h=>h.slice()):[0,1,2,3].map(p=>d.slice(p*n,p*n+n));if(g=='29'){if(!keep)G.h0=G.h.map(h=>h.slice());G.full=G.h0.map(h=>h.slice());G.h=G.full.map(h=>h.slice(0,4))}
  G.h.forEach(h=>h.sort((a,b)=>a.s-b.s||st(b)-st(a)));if(!keep&&g!='29')G.h0=G.h.map(h=>h.slice());
- G.tr=[];G.tw=[0,0,0,0];G.pp=[0,0,0,0];G.br=false;G.t=g=='bridge'?0:-1;G.bid=[];G.bid29=[null,null,null,null];G.bidLog=[];G.cur=0;G.forcedBid=false;G.over=0;G.k='';G.turn=-1;G.gen=(G.gen||0)+1;G.tt=-1;G.trumpCard=null;G.ask=-1;G.phase='play';G.ld=keep?G.ld:(++G.rd)%4;G.incomingNotice=null;G.incomingHighlight=false;G.passNotice=null;G.passSelected=[];G.freshBid=-1;G.scorePulse=-1;
+  G.tr=[];G.tw=[0,0,0,0];G.pp=[0,0,0,0];G.br=false;G.t=g=='bridge'?0:-1;G.bid=[];G.bid29=[null,null,null,null];G.bidLog=[];G.cur=0;G.forcedBid=false;G.over=0;G.k='';G.turn=-1;G.gen=(G.gen||0)+1;G.tt=-1;G.trumpCard=null;G.ask=-1;G.phase='play';G.ld=keep?G.ld:(++G.rd)%4;G.incomingNotice=null;G.incomingHighlight=false;G.passNotice=null;G.passSelected=[];G.freshBid=-1;G.scorePulse=-1;G.trumpMode=null;G.trumpSevenSuit=null;G.dealing=true;
  if(g=='hearts'){G.passDir=heartsPassDirection(G.rd);if(G.passDir==='hold'){G.phase='hold';G.passNotice={kind:'hold',round:G.rd};msg(heartsPassBanner(G.rd));draw();later(startHeartsPlay,1200)}else beginHeartsPass()}
  else if(g=='bridge')bidB();else bid29();
 }
@@ -282,9 +281,31 @@ function bid29(){
 }
 function pickT(){
  if(!G||G.g!=='29'||G.phase!=='bidding'||!Array.isArray(G.bid29)||G.bid29.length!==4||G.bid29.some(b=>!Number.isInteger(b)&&b!=='pass')||G.bb<0)return false;
- G.phase='trump';G.turn=-1;const p=G.bb,fin=s=>{if(!G||G.phase!=='trump'||p!==G.bb||s<0||s>=SU.length||G.trumpCard)return;G.tt=s;G.trumpCard=null;G.t=-1;G.phase='play';hideAsk();G.h=G.full.map(h=>h.slice());G.h.forEach(h=>h.sort((a,b)=>a.s-b.s||st(b)-st(a)));G.turn=G.ld;msg(NM[p]+' won the bid at '+G.cur+'. Trump is concealed until requested. The other 4 cards are dealt.');draw();later(next,1100)};
- if(p==0)ask('South won the bid at '+G.cur+'. Choose a trump suit.',SU.map((x,s)=>['<span class="cd '+(RED(s)?'r':'')+'" style="display:block">'+face({s,r:14})+'</span>',()=>fin(s)]));
- else{const h=G.h[p];let b=0,bv=-1;for(let s=0;s<4;s++){const v=h.filter(c=>c.s==s).reduce((a,c)=>a+1+(P29[c.r]||0),0);if(v>bv){bv=v;b=s}}fin(b)}
+ G.phase='trump';G.turn=-1;const p=G.bb,
+ fin=(s,opts={})=>{
+  if(!G||G.phase!=='trump'||p!==G.bb)return;
+  if(typeof s==='number'){
+   if(s<0||s>=SU.length||G.trumpCard)return;
+   G.tt=s;G.trumpCard=null;G.t=-1;G.trumpMode='suit';
+  }else if(s==='seven'){
+   G.tt='seven';G.trumpCard=null;G.t=-1;G.trumpMode='seven';G.trumpSevenSuit=opts.suit??null;
+  }else if(s==='joker'){
+   G.tt='joker';G.trumpCard=null;G.t=-1;G.trumpMode='joker';
+  }else{return;}
+  G.phase='play';hideAsk();G.h=G.full.map(h=>h.slice());G.h.forEach(h=>h.sort((a,b)=>a.s-b.s||st(b)-st(a)));G.turn=G.ld;
+  msg(NM[p]+' won the bid at '+G.cur+'. Trump is concealed until requested. The other 4 cards are dealt.');
+  draw();later(next,1100)
+ };
+ if(p==0){
+  const opts=[];
+  SU.forEach((x,s)=>{opts.push(['<span class="cd '+(RED(s)?'r':'')+'" style="display:block">'+face({s,r:14})+'</span>',()=>fin(s)]);});
+  opts.push(['<span style="display:flex;align-items:center;justify-content:center;height:100%;font-weight:700;font-size:14px">7</span>',()=>{ask('Choose suit for Seven as trump.',SU.map((x,s)=>['<span class="cd '+(RED(s)?'r':'')+'" style="display:block">'+face({s,r:7})+'</span>',()=>{hideAsk();fin('seven',{suit:s});}]))}]);
+  opts.push(['<span style="display:flex;align-items:center;justify-content:center;height:100%;font-weight:700;font-size:12px;text-align:center">JOKER</span>',()=>fin('joker')]);
+  ask('South won the bid at '+G.cur+'. Choose trump.',opts);
+  return true;
+ }
+ const h=G.h[p];let b=0,bv=-1;for(let s=0;s<4;s++){const v=h.filter(c=>c.s==s).reduce((a,c)=>a+1+(P29[c.r]||0),0);if(v>bv){bv=v;b=s}}
+ fin(b);
  return true
 }
 function win(tr){let b=0;for(let i=1;i<tr.length;i++){const a=tr[i].c,w=tr[b].c,at=a.s==G.t,wt=w.s==G.t;if((at&&!wt)||(at==wt&&a.s==w.s&&st(a)>st(w)))b=i}return b}
@@ -347,11 +368,11 @@ function tgS(){SND=!SND;draw()}
 function bidStatus(g,p){
  if(g.g==='bridge'){
   const bid=g.bid[p];
-  if(Number.isInteger(bid))return{num:String(bid),kind:'bid',caption:p===0?'You':'Bid'};
+  if(Number.isInteger(bid))return{num:String(bid),kind:'bid',caption:p===0?'Your bid':'Bid'};
  }else if(g.g==='29'){
   const bid=g.bid29?.[p];
-  if(typeof bid==='number')return{num:String(bid),kind:'bid',caption:g.forcedBid&&p===g.bb?'Forced':p===0?'You':p===2?'Partner':'Bid',partner:p===2,bidder:g.bb===p};
-  if(bid==='pass')return{label:'Pass',kind:'passed',partner:p===2};
+  if(typeof bid==='number')return{num:String(bid),kind:'bid',caption:g.forcedBid&&p===g.bb?'Forced':p===0?'YOU':p===2?'PARTNER':'Bid',partner:p===2,bidder:g.bb===p};
+  if(bid==='pass')return{label:'PASSED',kind:'passed',partner:p===2};
  }
  if(g.phase==='bidding'&&g.turn===p)return{label:p===0?'Your bid':'Thinking…',kind:'think'};
  if(g.phase==='bidding')return{label:'Waiting',kind:'waiting'};
@@ -360,20 +381,29 @@ function bidStatus(g,p){
 function seatInfoHTML(g,p){
  if(g.g!=='bridge'&&g.g!=='29')return'';
  const bid=bidStatus(g,p),current=bid.kind==='think',fresh=g.freshBid===p?' fresh':'';
- const badge=bid.num!=null
-  ?'<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(bid.bidder?' bidder':'')+(current?' current':'')+fresh+'" aria-label="'+NM[p]+' bid '+bid.num+'"><i>'+bid.caption+'</i><b>'+bid.num+'</b></span>'
-  :'<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(current?' current':'')+'" aria-label="'+NM[p]+' '+bid.label+'">'+bid.label+'</span>';
+ let badge;
+function seatInfoHTML(g,p){
+ if(g.g!=='bridge'&&g.g!=='29')return'';
+ const bid=bidStatus(g,p),current=bid.kind==='think',fresh=g.freshBid===p?' fresh':'';
+ let badge;
+ if(bid.num!=null){
+  if(g.g==='bridge'){
+    let i=bid.caption;
+    if(i==='Your bid')i='YOUR BID'; else if(i==='Bid')i='BID'; else if(typeof i==='string'){i=i.toUpperCase();}
+    badge='<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(bid.bidder?' bidder':'')+(current?' current':'')+fresh+'" aria-label="'+NM[p]+' bid '+bid.num+'"><i>'+i.replace(/BID/,'')+' </i><b>'+bid.num+'</b></span>';
+  }else if(g.g==='29'){
+    if(bid.kind==='passed'){badge='<span class="seatbadge passed'+(bid.partner?' partner':'')+'" aria-label="'+NM[p]+' '+(bid.label||'Pass')+'"><i>'+(bid.label==='Pass'?'PASSED':bid.label)+'</i></span>';}
+    else if(p===0) {badge='<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(bid.bidder?' bidder':'')+(current?' current':'')+fresh+'" aria-label="'+NM[p]+' bid '+bid.num+'"><i>YOU · BID</i><b>'+bid.num+'</b></span>';}
+    else if(p===2) {badge='<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(bid.bidder?' bidder':'')+(current?' current':'')+fresh+'" aria-label="'+NM[p]+' bid '+bid.num+'"><i>PARTNER · BID</i><b>'+bid.num+'</b></span>';}
+    else {badge='<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(bid.bidder?' bidder':'')+(current?' current':'')+fresh+'" aria-label="'+NM[p]+' bid '+bid.num+'"><i>BID</i><b>'+bid.num+'</b></span>';}
+  }else{badge='<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(bid.bidder?' bidder':'')+(current?' current':'')+fresh+'" aria-label="'+NM[p]+' bid '+bid.num+'"><i>'+(bid.caption||'')+'</i><b>'+bid.num+'</b></span>';}
+ }else{
+  badge='<span class="seatbadge '+bid.kind+(bid.partner?' partner':'')+(current?' current':'')+'" aria-label="'+NM[p]+' '+bid.label+'">'+bid.label.replace('Thinking…','THINKING…').replace('Waiting','WAITING').replace('Pass','PASSED').replace('Passed','PASSED')+'</span>';
+ }
  const tricks=g.g==='bridge'&&g.phase!=='bidding'?'<span class="seatbadge tricks" aria-label="'+NM[p]+' '+g.tw[p]+' tricks taken"><i>Tricks</i><b>'+g.tw[p]+'</b></span>':'';
  return'<div class="seatinfo">'+badge+tricks+'</div>'
 }
 const SUIT_NAME=['Spades','Hearts','Diamonds','Clubs'];
-function trumpHTML(g){
- if(g.g==='bridge')return'<div class="trump-pip" aria-hidden="true">♠</div><div><b>TRUMP</b><small>Spades</small></div>';
- if(g.g!=='29')return'';
- if(g.trumpCard&&g.t>=0){const c=g.trumpCard;return'<div class="cd '+(RED(c.s)?'r':'')+'" aria-hidden="true">'+face(c)+'</div><div><b>TRUMP</b><small>'+rl(c.r)+' '+SUIT_NAME[c.s]+'</small></div>'}
- if(g.t>=0)return'<div class="trump-pip '+(RED(g.t)?'r':'')+'" aria-hidden="true">'+SU[g.t]+'</div><div><b>TRUMP</b><small>'+SUIT_NAME[g.t]+'</small></div>';
- return'<div class="backcard" aria-hidden="true"></div><div><b>TRUMP</b><small>'+(g.tt>=0?'Concealed':'Not selected')+'</small></div>'
-}
 function passNoticeHTML(g){
  const notice=g.passNotice;if(!notice)return'';
  if(notice.kind==='hold')return'<div class="pass-title"><b>'+(notice.round?'Round '+notice.round+': ':'')+'Hold — no cards exchanged</b></div>';
@@ -383,7 +413,36 @@ function passNoticeHTML(g){
  if(notice.stage==='sending')return'<div class="pass-row"><label>Sending 3 cards to '+NM[to]+'</label><div class="pass-cards outgoing" data-to="'+NM[to]+'">'+cards(notice.outgoing)+'</div></div>';
  return'<div class="pass-row"><label>Received 3 cards from '+NM[from]+'</label><div class="pass-sub">These cards stay marked in your hand.</div><div class="pass-cards incoming" data-from="'+NM[from]+'">'+cards(notice.incoming)+'</div></div>'
 }
-function board(g){
+
+
+
+draw = function(){
+  const g=G;if(g.g=='bridge')$('#gt').textContent='Call Bridge · Round '+Math.min(g.rd,5)+' of 5';
+  const k=g.tr.map(x=>x.p+'.'+x.c.s+'.'+x.c.r).join();
+  if(k!==g.k){g.k=k;$('#tr').innerHTML=g.tr.map(x=>'<div class="tc pos'+x.p+'"><div class="cd '+(RED(x.c.s)?'r':'')+'">'+face(x.c)+'</div></div>').join('')}
+  if(G&&G.dealing){ board(g); return; }
+  board(g)
+}
+
+  }
+
+;try{if(typeof board==="function"){globalThis.board=board;}}catch(e){}
+function trumpHTML(g){
+ if(g.g==='bridge')return'<div class="trump-pip" aria-hidden="true">♠</div><div><b>TRUMP</b><small>Spades</small></div>';
+ if(g.g!=='29')return'';
+  if(g.t>=0){
+  if(g.trumpMode==='seven')return'<div class="cd '+(RED(g.trumpSevenSuit||g.t)?'r':'')+'" aria-hidden="true">'+face({s:g.trumpSevenSuit||g.t,r:7})+'</div><div><b>TRUMP</b><small>7 of '+SUIT_NAME[g.trumpSevenSuit||g.t]+'</small></div>';
+  if(g.trumpMode==='joker')return'<div class="trump-pip" aria-hidden="true">★</div><div><b>TRUMP</b><small>Joker</small></div>';
+  if(g.trumpCard&&g.t>=0){const c=g.trumpCard;return'<div class="cd '+(RED(c.s)?'r':'')+'" aria-hidden="true">'+face(c)+'</div><div><b>TRUMP</b><small>'+rl(c.r)+' '+SUIT_NAME[c.s]+'</small></div>'}
+  return'<div class="trump-pip '+(RED(g.t)?'r':'')+'" aria-hidden="true">'+SU[g.t]+'</div><div><b>TRUMP</b><small>'+SUIT_NAME[g.t]+' revealed</small></div>';
+ }
+ return'<div class="backcard" aria-hidden="true"></div><div><b>TRUMP</b><small>Selected · concealed</small></div>'
+}
+
+
+
+
+var board = function(g){try{globalThis.board=board;}catch(e){}
  const n=g.g=='29',f=v=>+v.toFixed(1),R=(a,b,c,on,pulse)=>'<div class="'+(on?'on ':'')+(pulse?'pulse':'')+'"><span>'+a+'</span><span><b>'+b+'</b>'+(c?'<small>'+c+'</small>':'')+'</span></div>';
  const phaseLabel=g.phase==='bidding'?'Bidding':g.phase==='trump'?'Choose trump':g.phase==='passing'?'Passing':g.phase==='receiving'?'Receiving':g.phase==='hold'?'Hold':g.phase==='round-end'?'Hand complete':'Play';
  let i1,s1;
@@ -395,13 +454,13 @@ function board(g){
  $('#info').innerHTML='<h4>Info<span class="ib"><button aria-label="Sound" onclick="tgS()">'+ico(SND?IC.on:IC.off)+'</button><button aria-label="Restart or new game" onclick="menu()">'+ico(IC.re)+'</button></span></h4>'+i1;
  $('#sc').innerHTML='<h4>Scores</h4>'+s1;
  const trump=trumpHTML(g),dock=$('#trumpdock');
- dock.innerHTML=trump;dock.hidden=!trump;dock.className=g.g==='29'&&g.t<0?'concealed':g.t>=0||g.g==='bridge'?'revealed':'';
- dock.setAttribute('aria-label',g.g==='bridge'?'Trump is spades':g.g!=='29'?'':g.trumpCard&&g.t>=0?'Trump card '+rl(g.trumpCard.r)+' of '+SUIT_NAME[g.trumpCard.s]:g.t>=0?'Trump suit '+SUIT_NAME[g.t]:g.tt>=0?'Trump concealed':'Trump not selected');
+ if(dock){dock.innerHTML=trump;dock.hidden=!trump;dock.className=g.g==='29'&&g.t<0?'concealed':g.t>=0||g.g==='bridge'?'revealed':'';try{dock.setAttribute('aria-label',g.g==='bridge'?'Trump is spades':g.g!=='29'?'':g.trumpCard&&g.t>=0?'Trump card '+rl(g.trumpCard.r)+' of '+SUIT_NAME[g.trumpCard.s]:g.t>=0?'Trump suit '+SUIT_NAME[g.t]:g.tt>=0?'Trump concealed':'Trump not selected');}catch(e){}}
  [1,2,3].forEach(p=>{$('#s'+p).innerHTML='<div class="av'+(g.turn==p?' on':'')+'">'+AVS(p)+'</div><small class="'+(g.turn==p?'on':'')+'">'+NM[p]+'</small>'+seatInfoHTML(g,p)+'<div class="fs '+(p==2?'h':'v')+'">'+'<i class="bk"></i>'.repeat(g.h[p].length)+'</div>'});
- const h=g.h[0],my=g.phase==='play'&&g.turn==0&&g.tr.length<4,L=my?legal(0):[],received=g.incomingNotice||[],fromName=Number.isInteger(g.passNotice?.source)?NM[g.passNotice.source]:'',m=h.length>6?Math.ceil(h.length/2):h.length;
- const b=h.map((c,i)=>{const selected=g.phase==='passing'&&g.passSelected.includes(c),mark=received.includes(c);return'<button class="cd '+(RED(c.s)?'r ':'')+(selected?'sel ':mark?'incoming ':my?(L.includes(c)?'ok':'x'):'')+'" onclick="tap('+i+')" aria-label="'+rl(c.r)+' of '+SU[c.s]+(selected?', selected to pass':'')+(mark?', received from '+fromName:'')+'">'+face(c)+(mark?'<em class="from">'+fromName+'</em>':'')+'</button>'});
- $('#hd').innerHTML='<div class="rw">'+b.slice(0,m).join('')+'</div>'+(b.length>m?'<div class="rw">'+b.slice(m).join('')+'</div>':'');
- $('#hd').className=g.incomingHighlight?'incomingHand':'';
+  const h=g.h[0],my=g.phase==='play'&&g.turn==0&&g.tr.length<4,L=my?legal(0):[],received=g.incomingNotice||[],fromName=Number.isInteger(g.passNotice?.source)?NM[g.passNotice.source]:'',m=h.length>6?Math.ceil(h.length/2):h.length;
+  const b=h.map((c,i)=>{const selected=g.phase==='passing'&&g.passSelected.includes(c),mark=received.includes(c);const anim=g.dealing?` style="animation:dealIn .35s ease ${i*.02}s both"`:'';
+   return'<button class="cd '+(RED(c.s)?'r ':'')+(selected?'sel ':mark?'incoming ':my?(L.includes(c)?'ok':'x'):'')+'"'+anim+' onclick="tap('+i+')" aria-label="'+rl(c.r)+' of '+SU[c.s]+(selected?', selected to pass':'')+(mark?', received from '+fromName:'')+'">'+face(c)+(mark?'<em class="from">'+fromName+'</em>':'')+'</button>'});
+  $('#hd').innerHTML='<div class="rw">'+b.slice(0,m).join('')+'</div>'+(b.length>m?'<div class="rw">'+b.slice(m).join('')+'</div>':'');
+  $('#hd').className=g.incomingHighlight?'incomingHand':(g.dealing?'dealing':'');
  const status=g.phase==='passing'?heartsPassBanner(g.rd):g.phase==='receiving'?'Received 3 cards from '+fromName:g.phase==='hold'?'Hold — no cards exchanged':g.phase==='bidding'?(g.turn===0?'Your bid':g.turn>0?NM[g.turn]+' bidding':'Waiting for bids'):g.phase==='trump'?(g.bb===0?'Choose trump':'Waiting for trump selection'):g.phase==='round-end'?'Hand complete':g.turn===0?'Your turn':g.turn>0?NM[g.turn]+' to play':'Waiting';
  $('#me').innerHTML='<span class="av sm'+(g.turn==0?' on':'')+'">'+AVS(0)+'</span><span>South · '+status+'</span>'+seatInfoHTML(g,0);
  const action=$('#actionbar');
@@ -417,9 +476,13 @@ function board(g){
   notice.innerHTML=passNoticeHTML(g);notice.hidden=!g.passNotice;notice._renderedPassNotice=g.passNotice
  }
 }
-function draw(){
- const g=G;if(g.g=='bridge')$('#gt').textContent='Call Bridge · Round '+Math.min(g.rd,5)+' of 5';
- const k=g.tr.map(x=>x.p+'.'+x.c.s+'.'+x.c.r).join();
- if(k!==g.k){g.k=k;$('#tr').innerHTML=g.tr.map(x=>'<div class="tc pos'+x.p+'"><div class="cd '+(RED(x.c.s)?'r':'')+'">'+face(x.c)+'</div></div>').join('')}
- board(g)}
+
+try{globalThis.board=board;}catch(e){}
 </script></body></html>
+try{window.board=board;globalThis.board=board;}catch(e){}
+
+if(typeof board!=="undefined"){try{globalThis.board=board;}catch(e){} try{window.board=board;}catch(e){}}
+
+try{if(typeof board==="function"){globalThis.board=board;}}catch(e){}
+
+if(typeof draw==="function"){try{globalThis.draw=draw;}catch(e){}}

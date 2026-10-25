@@ -34,7 +34,7 @@ function loadGame() {
     window: { addEventListener() {} },
   });
   vm.runInContext(
-    `${inlineScript}\nglobalThis.testApi = {setGame(g) { G = g; }, getGame() { return G; }, html(s) { return document.querySelector(s).innerHTML; }, text(s) { return document.querySelector(s).textContent; }, runNextTimer() { const callback = timers.shift(); if (callback) callback(); }, runTimers() { timers.splice(0).forEach(callback => callback()); }, deal, NM, legal, legalB, win, playC, tap, placeBidB, heartsPassDirection, heartsPassOffset, heartsPassSource, heartsPassReceiver, transferHeartsPass, bidStatus, seatInfoHTML, board, trumpHTML, pickT, startHeartsPlay, commitHeartsPass};`,
+    `${inlineScript}\ntry{globalThis.board=board; globalThis.draw = draw;}catch(e){}\nglobalThis.testApi = {setGame(g) { G = g; }, getGame() { return G; }, html(s) { return document.querySelector(s).innerHTML; }, text(s) { return document.querySelector(s).textContent; }, runNextTimer() { const callback = timers.shift(); if (callback) callback(); }, runTimers() { timers.splice(0).forEach(callback => callback()); }, deal, NM, legal, legalB, win, playC, tap, placeBidB, heartsPassDirection, heartsPassOffset, heartsPassSource, heartsPassReceiver, transferHeartsPass, bidStatus, seatInfoHTML, board, trumpHTML, pickT, startHeartsPlay, commitHeartsPass};`,
     context,
   );
   return context.testApi;
