@@ -19,7 +19,15 @@ function loadGame() {
           hidden: true,
           innerHTML: '',
           textContent: '',
+          style: {},
+          id: selector,
           addEventListener() {},
+          setAttribute() {},
+          getAttribute() { return null; },
+          remove() {},
+          querySelector() { return document.querySelector(selector + ' child'); },
+          appendChild() {},
+          get children() { return []; },
         });
       }
       return elements.get(selector);
@@ -222,8 +230,8 @@ test('Call Bridge seat badges show all confirmed bids and separate trick counts 
   api.board(bridge);
   const seats = [0, 1, 2, 3].map(p => api.seatInfoHTML(bridge, p));
   for (const [p, bid, tricks] of [[0, 3, 2], [1, 1, 0], [2, 4, 3], [3, 2, 1]]) {
-    assert.match(seats[p], new RegExp(p === 0 ? `YOUR BID ${bid}` : `BID ${bid}`));
-    assert.match(seats[p], new RegExp(`TRICKS ${tricks}`));
+    assert.match(seats[p], new RegExp(`aria-label="South bid ${bid}|bid ${bid}"`));
+    assert.match(seats[p], new RegExp(`aria-label="\\S+ ${tricks} tricks taken"`));
   }
   assert.match(api.html('#sc'), /<b>5<\/b>/);
   assert.doesNotMatch(api.html('#sc'), /TRICKS|BID/);
@@ -231,8 +239,8 @@ test('Call Bridge seat badges show all confirmed bids and separate trick counts 
   bridge.phase = 'bidding';
   bridge.turn = 1;
   bridge.bid = [3, null, null, null];
-  assert.match(api.seatInfoHTML(bridge, 1), /THINKING…/);
-  assert.match(api.seatInfoHTML(bridge, 2), /WAITING/);
+  assert.match(api.seatInfoHTML(bridge, 1), /Thinking/);
+  assert.match(api.seatInfoHTML(bridge, 2), /Waiting/);
   assert.match(api.seatInfoHTML(bridge, 1), /current/);
 });
 
@@ -247,16 +255,16 @@ test('29 seat badges show each actual bid, partner identity and bidding progress
     tt: 2,
     t: -1,
   });
-  for (const [p, expected] of [[0, 'YOU · BID 17'], [1, 'PASSED'], [2, 'PARTNER · 18'], [3, 'THINKING…']]) {
+  for (const [p, expected] of [[0, 'South bid 17'], [1, 'Pass'], [2, 'North bid 18'], [3, 'Thinking']]) {
     assert.match(api.seatInfoHTML(hand29, p), new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   }
   hand29.phase = 'play';
   hand29.turn = 0;
-  assert.match(api.seatInfoHTML(hand29, 2), /PARTNER · 18/);
-  assert.match(api.trumpHTML(hand29), /Selected · concealed/);
+  assert.match(api.seatInfoHTML(hand29, 2), /North bid 18/);
+  assert.match(api.trumpHTML(hand29), /Concealed/);
   assert.doesNotMatch(api.trumpHTML(hand29), /♠|♥|♦|♣/);
   hand29.t = 3;
-  assert.match(api.trumpHTML(hand29), /♣ revealed/);
+  assert.match(api.trumpHTML(hand29), /Clubs/);
   assert.doesNotMatch(api.trumpHTML(hand29), /class="cd/);
 });
 

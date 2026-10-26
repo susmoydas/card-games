@@ -58,7 +58,8 @@ gameplay and fonts are packaged locally and work with network connectivity off.
 - Styles: the single `<style>` block at the top.
 
 ## Rules implemented
-- 29: bid 16 to 29, hidden trump, ask to show trump when you cannot follow suit. Bid 29 means win all 8 tricks. Per-seat bids stay visible during the hand. The seventh-card/Joker variant is not implemented because its deal, eligibility, ranking, and scoring rules have not been specified.
+- 29: bid 16 to 28 (one round, strictly increasing; all four pass = redeal with a new dealer), hidden trump picked from the first four cards, ask to show trump when you cannot follow suit, overtrump required when possible. Double/Redouble after trump selection (stakes 1/2/4). Single hand after the second deal (no trump, caller leads, +3/-3, cancels doubles). King+Queen of trump = Pair (declare button when legal; -4 for the bidding team / +4 for opponents). Scoring: card points vs adjusted target, first team to +6 wins, -6 loses; dealer rotates each hand. Seventh-Card and Joker variants remain unimplemented and disabled pending rule specification.
+- 29 trump modes: the bid winner picks **Choose a suit**, **7th Card** (trump = 3rd card of the second set, set aside face-down, cancelled and redealt on a zero-point K/Q/8/7) or **Joker (No Trump)** (no reveal, no ask-to-show, no pair). Single hand may be declared by any seat in table order: the caller's partner sits out, 3 players play, caller leads every trick, +3/-3, doubles cancelled, and the hand is cancelled if an opponent lacks the lead suit. Popups use one shared liquid-glass modal; sitting-out hand dims.
 - Call Bridge: 13 cards, each seat bids 1 to 13 in sequence, spades are trump, must follow suit, must trump and overtrump, 5 rounds.
 - Hearts: pass three cards left, right, across, then hold on each fourth hand; avoid hearts and Q of spades; game ends at 50.
 - Call Marriage: not built yet.

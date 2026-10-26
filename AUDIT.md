@@ -106,3 +106,44 @@ or special Seven behavior has been added.
 - [ ] Run the full five-round Call Bridge match and long-game scoring tests.
 - [ ] Replace the placeholder application ID and produce a signed release only
       when the owner supplies their release identity/keystore.
+
+## 29 rules update (spec sections 4, 6, 8, 9)
+
+- Bid range 16–28 (`RULES29.minBid`/`maxBid`); "bid 29" removed; all-pass redeal
+  with dealer rotation (forced bid 16 removed).
+- Double/Redouble after trump selection before the second deal (stakes 1/2/4 via
+  `stake29`), with bounded bot heuristics.
+- Single hand after the second deal for the bid winner (no trump, caller leads,
+  +3/−3, cancels doubles); bots choose only with a very strong hand.
+- Pair (K+Q of trump) declared only after trump reveal, before playing either
+  card, and (by default) after the team has taken a trick; target −4 / +4.
+- Scoring: card points vs adjusted target, ±stake, team game score, first to
+  +6 wins / −6 loses, per-hand result line, dealer rotation each hand.
+- `lastTrickPoint` and `partnerRaise` implemented but default `false`.
+- Seventh Card / Joker remain unimplemented and disabled (`seventhCard:false`,
+  `joker:false`); UI tiles are non-clickable "coming soon".
+
+Verified: `npm test` → 31 pass, 0 fail (rule/scoring/unit coverage).
+Not verified: browser/manual runtime of the new double, single and pair UI flows.
+
+## 29: Single (corrected), Seventh-Card, Joker, animations
+
+- Trump selection now offers three real choices (suits / 7th Card / Joker);
+  "coming soon" tiles removed; `RULES29.seventhCard=true`, `joker=true`.
+- 7th card: taken from the bidder's deal-order 7th card (index 6 of `G.full`),
+  removed from the playable hand (7 cards left), `seventhCardCancelOnZero`
+  redeals on K/Q/8/7, card returns to hand on trump reveal.
+- Joker: `t=-2`, no reveal/ask/overtrump/pair, highest of led suit wins;
+  info panel shows "No Trump (Joker)".
+- Single (corrected): offered in table order after the bidder (first yes wins),
+  caller's partner sits out via `activeSeats29()`/`nextSeat29()`, tricks complete
+  at 3 cards (`trickSize29()`), caller leads every trick, immediate -3 if the
+  caller loses a trick, `singleCancelIfNoLeadSuit` redeals, doubles cancelled,
+  sitting-out hand dims with "You are sitting out".
+- Popup: single `ask()`/`#ov` modal restyled as liquid-glass (blur 24px,
+  specular overlay, fade+scale-in, reduced-motion, @supports fallback).
+- README "Rules implemented" updated.
+
+Verified by `npm test`: 44 pass / 0 fail.
+Not verified in a browser: all of the above UI flows, animations (deal, play,
+trick sweep, flip), and visual layout at 320/360/390 widths.
