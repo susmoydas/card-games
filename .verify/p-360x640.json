@@ -1,0 +1,220 @@
+{
+  "mode": "seventh",
+  "steps": 161,
+  "events": [
+    {
+      "firstPlay": {
+        "played": "10 of ♥",
+        "trickLen": 3,
+        "trickPlayers": [
+          2,
+          3,
+          0
+        ],
+        "cards": [
+          {
+            "text": "J♥♥",
+            "w": 28.9,
+            "h": 41.9,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "4.29921px",
+            "pos": "tc pos2",
+            "left": 150.2,
+            "top": 291.4
+          },
+          {
+            "text": "Q♥♥",
+            "w": 28.9,
+            "h": 41.9,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "4.29921px",
+            "pos": "tc pos3",
+            "left": 220.4,
+            "top": 375.4
+          },
+          {
+            "text": "10♥♥",
+            "w": 28.9,
+            "h": 41.9,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "4.29921px",
+            "pos": "tc pos0",
+            "left": 150.2,
+            "top": 459.4
+          }
+        ],
+        "hd": {
+          "top": 541.3,
+          "bottom": 630
+        },
+        "tr": {
+          "top": 325.6,
+          "bottom": 467.1,
+          "left": 145.3,
+          "right": 214.7
+        }
+      }
+    }
+  ],
+  "trickSamples": [],
+  "modalLog": [],
+  "peeks": [
+    {
+      "rd": 4,
+      "bb": 3,
+      "modal": "East bid cancelled: 7th card has no points. Redeal. Continuing in 5s… Continue Play",
+      "trumpCard": null,
+      "fullSeventh": {
+        "r": 13,
+        "s": 1
+      },
+      "hand": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": false
+    }
+  ],
+  "secondDeals": [
+    {
+      "rd": 5,
+      "bb": 3,
+      "phase": "single",
+      "hand": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "trumpMode": "suit",
+      "pendingSeventh": false,
+      "trumpCard": null
+    }
+  ],
+  "errors": [],
+  "checks": {},
+  "layout": {
+    "vw": 360,
+    "vh": 640,
+    "boxes": {
+      "top": {
+        "t": 52,
+        "b": 193.2,
+        "h": 141.2,
+        "w": 348
+      },
+      "s2": {
+        "t": 199.8,
+        "b": 312.2,
+        "h": 112.4,
+        "w": 52.5
+      },
+      "mid": {
+        "t": 325.6,
+        "b": 467.1,
+        "h": 141.5,
+        "w": 348
+      },
+      "tr": {
+        "t": 325.6,
+        "b": 467.1,
+        "h": 141.5,
+        "w": 100.1
+      },
+      "msg": {
+        "t": 480.5,
+        "b": 498.6,
+        "h": 18.2,
+        "w": 137.5
+      },
+      "me": {
+        "t": 505.3,
+        "b": 541.3,
+        "h": 36,
+        "w": 348
+      },
+      "hd": {
+        "t": 541.3,
+        "b": 630,
+        "h": 88.7,
+        "w": 348
+      },
+      "tbl": {
+        "t": 193.2,
+        "b": 505.3,
+        "h": 312.1,
+        "w": 348
+      }
+    },
+    "handRows": 1,
+    "handCards": 1,
+    "handSize": {
+      "w": 46,
+      "h": 66.7
+    },
+    "handBelowViewport": -10,
+    "handAboveViewport": -541.3,
+    "trickVsHandOverlap": 0,
+    "trickVsMeOverlap": 0,
+    "trickVsS2Overlap": 20.8,
+    "trickCardSize": {
+      "w": 28.9,
+      "h": 41.9
+    }
+  },
+  "final": {
+    "phase": "play",
+    "turn": -1,
+    "bb": 3,
+    "rd": 5,
+    "ld": 1,
+    "trumpMode": "suit",
+    "pendingSeventh": false,
+    "t": 0,
+    "tt": 0,
+    "single": false,
+    "caller": null,
+    "sitter": null,
+    "trumpCard": null,
+    "fullSeventh": {
+      "r": 9,
+      "s": 0
+    },
+    "hand": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "trLen": 4,
+    "trPlayers": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "totalInPlay": 8,
+    "tw": [
+      1,
+      1,
+      2,
+      2
+    ],
+    "sc": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ask": -1,
+    "over": 0
+  },
+  "consoleErrors": []
+}

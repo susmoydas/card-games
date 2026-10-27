@@ -1,0 +1,288 @@
+{
+  "mode": "seventh",
+  "steps": 118,
+  "events": [
+    {
+      "firstPlay": {
+        "played": "K of ♥",
+        "trickLen": 3,
+        "trickPlayers": [
+          2,
+          3,
+          0
+        ],
+        "cards": [
+          {
+            "text": "9♥♥",
+            "w": 50.8,
+            "h": 73.7,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.56px",
+            "pos": "tc pos2",
+            "left": 142.6,
+            "top": 345.1
+          },
+          {
+            "text": "J♥♥",
+            "w": 50.8,
+            "h": 73.7,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.56px",
+            "pos": "tc pos3",
+            "left": 236.1,
+            "top": 462.9
+          },
+          {
+            "text": "K♥♥",
+            "w": 50.8,
+            "h": 73.7,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.56px",
+            "pos": "tc pos0",
+            "left": 142.6,
+            "top": 580.6
+          }
+        ],
+        "hd": {
+          "top": 723.6,
+          "bottom": 834
+        },
+        "tr": {
+          "top": 378.3,
+          "bottom": 621.1,
+          "left": 137,
+          "right": 253
+        }
+      }
+    }
+  ],
+  "trickSamples": [],
+  "modalLog": [],
+  "peeks": [
+    {
+      "rd": 4,
+      "bb": 0,
+      "modal": "Bad luck! Your 7th card has no points. Bid cancelled, redeal. Continuing in 5s… Continue Play",
+      "trumpCard": null,
+      "fullSeventh": {
+        "r": 12,
+        "s": 1
+      },
+      "hand": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": false
+    },
+    {
+      "rd": 5,
+      "bb": 0,
+      "modal": "A ♦ ♦ Your 7th card: A of ♦ → TRUMP is ♦ ♦ Continuing in 5s… Continue Play",
+      "trumpCard": {
+        "r": 14,
+        "s": 2
+      },
+      "fullSeventh": {
+        "r": 14,
+        "s": 2
+      },
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": true
+    }
+  ],
+  "secondDeals": [
+    {
+      "rd": 5,
+      "bb": 0,
+      "phase": "single",
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "trumpMode": "seventh",
+      "pendingSeventh": false,
+      "trumpCard": {
+        "r": 14,
+        "s": 2
+      }
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "bidMade": true,
+    "seventhChosen": true,
+    "peeksMatchDealOrder6": true,
+    "peekRevealsRealCard": true,
+    "secondDealsAre32Cards": true,
+    "bidderHasSevenAfterDeal": true,
+    "completedHandWithoutError": false,
+    "firstTrickCardRendered": true
+  },
+  "layout": {
+    "vw": 390,
+    "vh": 844,
+    "boxes": {
+      "top": {
+        "t": 52,
+        "b": 210.3,
+        "h": 158.3,
+        "w": 370
+      },
+      "s2": {
+        "t": 226.4,
+        "b": 346.1,
+        "h": 119.7,
+        "w": 59
+      },
+      "mid": {
+        "t": 378.3,
+        "b": 621.1,
+        "h": 242.9,
+        "w": 370
+      },
+      "tr": {
+        "t": 378.3,
+        "b": 621.1,
+        "h": 242.9,
+        "w": 170
+      },
+      "msg": {
+        "t": 653.3,
+        "b": 671.5,
+        "h": 18.2,
+        "w": 137.5
+      },
+      "me": {
+        "t": 687.6,
+        "b": 723.6,
+        "h": 36,
+        "w": 370
+      },
+      "hd": {
+        "t": 723.6,
+        "b": 834,
+        "h": 110.4,
+        "w": 370
+      },
+      "tbl": {
+        "t": 210.3,
+        "b": 687.6,
+        "h": 477.3,
+        "w": 370
+      }
+    },
+    "gstate": {
+      "phase": "play",
+      "rd": 5,
+      "h0": 3,
+      "turn": -1,
+      "single": false,
+      "sitter": null,
+      "trLen": 4
+    },
+    "rwCount": 1,
+    "cdCount": 3,
+    "hdInner": "<div class=\"rw\"><button style=\"--i:0\" class=\"cd \" onclick=\"tap(0)\" aria-label=\"9 of ♣\"><span class=\"ix\"><b>9</b><i>♣</i>",
+    "handRows": 1,
+    "handCards": 3,
+    "handSize": {
+      "w": 61,
+      "h": 88.4
+    },
+    "handBelowViewport": -10,
+    "handAboveViewport": -723.6,
+    "trickVsHandOverlap": 0,
+    "trickVsMeOverlap": 0,
+    "trickVsS2Overlap": 0,
+    "trickCardSize": {
+      "w": 54,
+      "h": 78.3
+    }
+  },
+  "final": {
+    "phase": "play",
+    "turn": -1,
+    "bb": 0,
+    "rd": 5,
+    "ld": 1,
+    "trumpMode": "seventh",
+    "pendingSeventh": false,
+    "t": -1,
+    "tt": 2,
+    "single": false,
+    "caller": null,
+    "sitter": null,
+    "trumpCard": {
+      "r": 14,
+      "s": 2
+    },
+    "fullSeventh": {
+      "r": 14,
+      "s": 2
+    },
+    "hand": [
+      3,
+      4,
+      4,
+      4
+    ],
+    "trLen": 4,
+    "trPlayers": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "totalInPlay": 20,
+    "tw": [
+      1,
+      1,
+      0,
+      1
+    ],
+    "sc": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ask": -1,
+    "over": 0
+  },
+  "peek": {
+    "rd": 4,
+    "bb": 0,
+    "modal": "Bad luck! Your 7th card has no points. Bid cancelled, redeal. Continuing in 5s… Continue Play",
+    "trumpCard": null,
+    "fullSeventh": {
+      "r": 12,
+      "s": 1
+    },
+    "hand": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "totalInPlay": 32,
+    "matchesDealOrder": false
+  },
+  "bidDone": true,
+  "trumpChosen": true,
+  "consoleErrors": []
+}

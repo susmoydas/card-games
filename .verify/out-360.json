@@ -1,0 +1,455 @@
+{
+  "mode": "seventh",
+  "steps": 490,
+  "events": [
+    {
+      "firstPlay": {
+        "played": "A of ♠",
+        "trickLen": 4,
+        "trickPlayers": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "cards": [
+          {
+            "text": "J♠♠",
+            "w": 46.9,
+            "h": 68,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.168px",
+            "pos": "tc pos1",
+            "left": 50.8,
+            "top": 386.9
+          },
+          {
+            "text": "7♦♦",
+            "w": 46.9,
+            "h": 68,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.168px",
+            "pos": "tc pos2",
+            "left": 156.6,
+            "top": 258.1
+          },
+          {
+            "text": "10♠♠",
+            "w": 46.9,
+            "h": 68,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.168px",
+            "pos": "tc pos3",
+            "left": 262.4,
+            "top": 386.9
+          },
+          {
+            "text": "A♠♠",
+            "w": 46.9,
+            "h": 68,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "7.168px",
+            "pos": "tc pos0",
+            "left": 156.6,
+            "top": 515.8
+          }
+        ],
+        "hd": {
+          "top": 497.6,
+          "bottom": 630
+        },
+        "tr": {
+          "top": 305.6,
+          "bottom": 536.3,
+          "left": 99.2,
+          "right": 260.8
+        }
+      }
+    },
+    {
+      "wentHome": true
+    }
+  ],
+  "trickSamples": [
+    {
+      "played": "A of ♠",
+      "trickLen": 4,
+      "trickPlayers": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "cards": [
+        {
+          "text": "J♠♠",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos1",
+          "left": 50.8,
+          "top": 386.9
+        },
+        {
+          "text": "7♦♦",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos2",
+          "left": 156.6,
+          "top": 258.1
+        },
+        {
+          "text": "10♠♠",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos3",
+          "left": 262.4,
+          "top": 386.9
+        },
+        {
+          "text": "A♠♠",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos0",
+          "left": 156.6,
+          "top": 515.8
+        }
+      ],
+      "hd": {
+        "top": 497.6,
+        "bottom": 630
+      },
+      "tr": {
+        "top": 305.6,
+        "bottom": 536.3,
+        "left": 99.2,
+        "right": 260.8
+      }
+    },
+    {
+      "played": "Q of ♣",
+      "trickLen": 4,
+      "trickPlayers": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "cards": [
+        {
+          "text": "A♣♣",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos1",
+          "left": 50.6,
+          "top": 387
+        },
+        {
+          "text": "7♣♣",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos2",
+          "left": 156.6,
+          "top": 258
+        },
+        {
+          "text": "9♠♠",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos3",
+          "left": 262.5,
+          "top": 387
+        },
+        {
+          "text": "Q♣♣",
+          "w": 46.9,
+          "h": 68,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos0",
+          "left": 156.6,
+          "top": 515.9
+        }
+      ],
+      "hd": {
+        "top": 541.3,
+        "bottom": 630
+      },
+      "tr": {
+        "top": 305.6,
+        "bottom": 536.3,
+        "left": 99.2,
+        "right": 260.8
+      }
+    },
+    {
+      "played": "7 of ♠",
+      "trickLen": 4,
+      "trickPlayers": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "cards": [
+        {
+          "text": "K♠♠",
+          "w": 49.1,
+          "h": 71.2,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos1",
+          "left": 75.4,
+          "top": 385.4
+        },
+        {
+          "text": "9♦♦",
+          "w": 49.1,
+          "h": 71.2,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos2",
+          "left": 155.5,
+          "top": 282.3
+        },
+        {
+          "text": "Q♥♥",
+          "w": 49.1,
+          "h": 71.2,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos3",
+          "left": 235.5,
+          "top": 385.4
+        },
+        {
+          "text": "7♠♠",
+          "w": 49.1,
+          "h": 71.2,
+          "bg": "rgb(255, 255, 255)",
+          "border": "1px rgba(0, 0, 0, 0.12)",
+          "radius": "7.168px",
+          "pos": "tc pos0",
+          "left": 155.5,
+          "top": 488.4
+        }
+      ],
+      "hd": {
+        "top": 541.3,
+        "bottom": 630
+      },
+      "tr": {
+        "top": 305.6,
+        "bottom": 536.3,
+        "left": 99.2,
+        "right": 260.8
+      }
+    }
+  ],
+  "modalLog": [],
+  "peeks": [
+    {
+      "rd": 4,
+      "bb": 0,
+      "modal": "A ♦ ♦ Your 7th card: A of ♦ → TRUMP is ♦ ♦ Continuing in 5s… Continue Play",
+      "trumpCard": {
+        "r": 14,
+        "s": 2
+      },
+      "fullSeventh": {
+        "r": 14,
+        "s": 2
+      },
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": true
+    },
+    {
+      "rd": 5,
+      "bb": 0,
+      "modal": "10 ♦ ♦ Your 7th card: 10 of ♦ → TRUMP is ♦ ♦ Continuing in 5s… Continue Play",
+      "trumpCard": {
+        "r": 10,
+        "s": 2
+      },
+      "fullSeventh": {
+        "r": 10,
+        "s": 2
+      },
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": true
+    },
+    {
+      "rd": 6,
+      "bb": 0,
+      "modal": "Bad luck! Your 7th card has no points. Bid cancelled, redeal. Continuing in 5s… Continue Play",
+      "trumpCard": null,
+      "fullSeventh": {
+        "r": 8,
+        "s": 3
+      },
+      "hand": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": false
+    },
+    {
+      "rd": 7,
+      "bb": 0,
+      "modal": "A ♥ ♥ Your 7th card: A of ♥ → TRUMP is ♥ ♥ Continuing in 5s… Continue Play",
+      "trumpCard": {
+        "r": 14,
+        "s": 1
+      },
+      "fullSeventh": {
+        "r": 14,
+        "s": 1
+      },
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "matchesDealOrder": true
+    }
+  ],
+  "secondDeals": [
+    {
+      "rd": 4,
+      "bb": 0,
+      "phase": "single",
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "trumpMode": "seventh",
+      "pendingSeventh": false,
+      "trumpCard": {
+        "r": 14,
+        "s": 2
+      }
+    },
+    {
+      "rd": 5,
+      "bb": 0,
+      "phase": "single",
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "trumpMode": "seventh",
+      "pendingSeventh": false,
+      "trumpCard": {
+        "r": 10,
+        "s": 2
+      }
+    },
+    {
+      "rd": 7,
+      "bb": 0,
+      "phase": "single",
+      "hand": [
+        7,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "trumpMode": "seventh",
+      "pendingSeventh": false,
+      "trumpCard": {
+        "r": 14,
+        "s": 1
+      }
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "bidWonBySouth": true,
+    "seventhChosen": true,
+    "peeksMatchDealOrder6": false,
+    "peekRevealsRealCard": false,
+    "secondDealsAre32Cards": true,
+    "bidderHasSevenAfterDeal": true,
+    "completedHandWithoutError": false,
+    "firstTrickCardRendered": true
+  },
+  "peek": {
+    "rd": 4,
+    "bb": 0,
+    "modal": "A ♦ ♦ Your 7th card: A of ♦ → TRUMP is ♦ ♦ Continuing in 5s… Continue Play",
+    "trumpCard": {
+      "r": 14,
+      "s": 2
+    },
+    "fullSeventh": {
+      "r": 14,
+      "s": 2
+    },
+    "hand": [
+      7,
+      8,
+      8,
+      8
+    ],
+    "totalInPlay": 32,
+    "matchesDealOrder": true
+  },
+  "bidDone": true,
+  "trumpChosen": true,
+  "final": {
+    "phase": "__none__"
+  },
+  "consoleErrors": []
+}

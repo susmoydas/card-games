@@ -1,10 +1,12 @@
 # Card Games (29, Call Bridge, Hearts)
 
-Offline Android card game app. The whole game is one file: `www/index.html`
-(HTML + CSS + JavaScript). Fonts are in `www/fonts`.
+Offline Android card game app. The shared app shell, Call Bridge, and Hearts are
+in `www/index.html`. The supplied 29 game is a self-contained page in
+`www/games/29/` and runs in an isolated frame. Fonts are bundled locally.
 
 ## Files
-- `www/index.html`  the game. Edit this file (VS Code, OpenCode AI).
+- `www/index.html`  app shell plus Call Bridge and Hearts.
+- `www/games/29/`   29 game (HTML, card SVGs, joker, local Lexend fonts).
 - `www/fonts/`      Lexend font files, so it works offline.
 - `capacitor.config.json`  app name and package id (change `com.yourname.cardgames`).
 - `package.json`    scripts and Capacitor dependencies.
@@ -51,15 +53,14 @@ The app has no online features or external runtime assets. The INTERNET
 permission remains because Capacitor's local HTTPS WebView origin requires it;
 gameplay and fonts are packaged locally and work with network connectivity off.
 
-## Where the code is (in www/index.html)
-- Game logic: functions `deal`, `bid29`, `legal`, `legalB`, `bot`, `playC`, `endT`, `endR`.
-- Screen drawing: `board` and `draw`.
+## Where the code is
+- App shell, Bridge, and Hearts logic: `www/index.html` (`deal`, `legal`, `legalB`, `bot`, `playC`, `endT`, `endR`, `board`, `draw`).
+- 29 logic: `www/games/29/index.html` (self-contained, including card rendering, bidding, trump selection, turns, and scoring).
+- 29 assets: `www/games/29/assets/` (card faces/back, joker, local Lexend fonts).
 - Avatars: `AVS`. Sounds: `sfx`. Game intro texts: `RU`.
-- Styles: the single `<style>` block at the top.
 
 ## Rules implemented
-- 29: bid 16 to 28 (one round, strictly increasing; all four pass = redeal with a new dealer), hidden trump picked from the first four cards, ask to show trump when you cannot follow suit, overtrump required when possible. Double/Redouble after trump selection (stakes 1/2/4). Single hand after the second deal (no trump, caller leads, +3/-3, cancels doubles). King+Queen of trump = Pair (declare button when legal; -4 for the bidding team / +4 for opponents). Scoring: card points vs adjusted target, first team to +6 wins, -6 loses; dealer rotates each hand. Seventh-Card and Joker variants remain unimplemented and disabled pending rule specification.
-- 29 trump modes: the bid winner picks **Choose a suit**, **7th Card** (trump = 3rd card of the second set, set aside face-down, cancelled and redealt on a zero-point K/Q/8/7) or **Joker (No Trump)** (no reveal, no ask-to-show, no pair). Single hand may be declared by any seat in table order: the caller's partner sits out, 3 players play, caller leads every trick, +3/-3, doubles cancelled, and the hand is cancelled if an opponent lacks the lead suit. Popups use one shared liquid-glass modal; sitting-out hand dims.
+- 29: the supplied standalone implementation is used unchanged apart from local font loading and app back/restart hooks. It handles 16–28 bidding, hidden/7th-card/Joker trump, doubles and redoubles, Single Hand, marriages, card play, and game marks.
 - Call Bridge: 13 cards, each seat bids 1 to 13 in sequence, spades are trump, must follow suit, must trump and overtrump, 5 rounds.
 - Hearts: pass three cards left, right, across, then hold on each fourth hand; avoid hearts and Q of spades; game ends at 50.
 - Call Marriage: not built yet.
@@ -69,5 +70,5 @@ license is included in `www/icons/LICENSE.md`. Hearts passing shows its
 direction, animates the selected outgoing cards and incoming cards in separate
 stages, and identifies the sender of the three received cards; the incoming
 cards stay identified until the player's first play. Hold hands
-show that no cards were exchanged. Bridge and 29 bids are displayed alongside
-their seats; Bridge trick counts remain a separately labelled seat indicator.
+show that no cards were exchanged. Bridge bids are displayed alongside their
+seats; Bridge trick counts remain a separately labelled seat indicator.

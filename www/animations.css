@@ -1,0 +1,14 @@
+/* animation: deal stagger, seventh card, pair glow, score flash */
+@keyframes deal-in{from{opacity:0;transform:translateY(46px) scale(.92)}to{opacity:1;transform:none}}
+#hd .cd.dn,.fs .bk.dn{animation:deal-in 280ms cubic-bezier(.22,.9,.25,1) both;animation-delay:calc(var(--i,0)*60ms)}
+@keyframes aside-slide{from{opacity:0;transform:translateY(56px) scale(.9)}to{opacity:1;transform:none}}
+#trumpdock.aside-slide{animation:aside-slide 300ms cubic-bezier(.22,.9,.25,1) both}
+@keyframes card-flip{from{transform:rotateY(90deg)}to{transform:none}}
+#hd .cd.flipback{animation:card-flip 300ms ease-out both}
+@keyframes pair-glow{0%{box-shadow:0 0 0 0 rgba(255,207,74,.7)}100%{box-shadow:0 0 0 10px rgba(255,207,74,0)}}
+#hd .cd.pairglow{animation:pair-glow 550ms ease-out both;border-color:var(--acc)}
+@keyframes score-flash{0%,60%{color:var(--acc)}100%{color:inherit}}
+.gl div.pulse b{animation:scorePop .45s ease,score-flash .45s ease}
+@media (prefers-reduced-motion:reduce){
+ #hd .cd.dn,.fs .bk.dn,#trumpdock.aside-slide,#hd .cd.flipback,#hd .cd.pairglow,.gl div.pulse b{animation-duration:.01ms!important;animation-delay:0s!important}
+}

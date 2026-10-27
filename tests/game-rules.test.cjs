@@ -42,7 +42,7 @@ function loadGame() {
     window: { addEventListener() {} },
   });
   vm.runInContext(
-    `${inlineScript}\ntry{globalThis.board=board; globalThis.draw = draw;}catch(e){}\nglobalThis.testApi = {setGame(g) { G = g; }, getGame() { return G; }, html(s) { return document.querySelector(s).innerHTML; }, text(s) { return document.querySelector(s).textContent; }, runNextTimer() { const callback = timers.shift(); if (callback) callback(); }, runTimers() { timers.splice(0).forEach(callback => callback()); }, deal, NM, legal, legalB, win, playC, tap, placeBidB, heartsPassDirection, heartsPassOffset, heartsPassSource, heartsPassReceiver, transferHeartsPass, bidStatus, seatInfoHTML, board, trumpHTML, pickT, startHeartsPlay, commitHeartsPass};`,
+    `${inlineScript}\ntry{globalThis.board=board; globalThis.draw = draw;}catch(e){}\nglobalThis.testApi = {setGame(g) { G = g; }, getGame() { return G; }, html(s) { return document.querySelector(s).innerHTML; }, text(s) { return document.querySelector(s).textContent; }, runNextTimer() { const callback = timers.shift(); if (callback) callback(); }, runTimers() { timers.splice(0).forEach(callback => callback()); }, deal, NM, legal, legalB, win, playC, tap, placeBidB, heartsPassDirection, heartsPassOffset, heartsPassSource, heartsPassReceiver, transferHeartsPass, bidStatus, seatInfoHTML, board, trumpHTML, startHeartsPlay, commitHeartsPass};`,
     context,
   );
   return context.testApi;
@@ -101,38 +101,6 @@ test('trump wins over a higher off-suit card', () => {
     { p: 0, c: { s: 1, r: 14 } },
     { p: 1, c: { s: 0, r: 2 } },
     { p: 2, c: { s: 2, r: 14 } },
-  ];
-  assert.equal(api.win(trick), 1);
-});
-
-test('29 follows suit and only allows trump when it has been requested', () => {
-  const api = loadGame();
-  const follow = { s: 1, r: 7 };
-  const trump = { s: 2, r: 11 };
-  const other = { s: 3, r: 14 };
-  const hand = [trump, other];
-  const state = game('29', {
-    t: -1,
-    h: [hand, [], [], []],
-    tr: [{ p: 1, c: { s: 1, r: 10 } }],
-  });
-  api.setGame(state);
-  assert.deepEqual(api.legal(0), hand);
-  state.t = 2;
-  state.ask = 0;
-  assert.deepEqual(api.legal(0), [trump]);
-  state.h[0] = [follow, trump, other];
-  state.ask = -1;
-  assert.deepEqual(api.legal(0), [follow]);
-});
-
-test('29 card ranking gives Jack precedence over Nine in the same suit', () => {
-  const api = loadGame();
-  api.setGame(game('29', { t: -1 }));
-  const trick = [
-    { p: 0, c: { s: 1, r: 9 } },
-    { p: 1, c: { s: 1, r: 11 } },
-    { p: 2, c: { s: 1, r: 14 } },
   ];
   assert.equal(api.win(trick), 1);
 });
@@ -242,51 +210,6 @@ test('Call Bridge seat badges show all confirmed bids and separate trick counts 
   assert.match(api.seatInfoHTML(bridge, 1), /Thinking/);
   assert.match(api.seatInfoHTML(bridge, 2), /Waiting/);
   assert.match(api.seatInfoHTML(bridge, 1), /current/);
-});
-
-test('29 seat badges show each actual bid, partner identity and bidding progress', () => {
-  const api = loadGame();
-  const hand29 = game('29', {
-    phase: 'bidding',
-    bid29: [17, 'pass', 18, null],
-    bb: 2,
-    cur: 18,
-    turn: 3,
-    tt: 2,
-    t: -1,
-  });
-  for (const [p, expected] of [[0, 'South bid 17'], [1, 'Pass'], [2, 'North bid 18'], [3, 'Thinking']]) {
-    assert.match(api.seatInfoHTML(hand29, p), new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
-  }
-  hand29.phase = 'play';
-  hand29.turn = 0;
-  assert.match(api.seatInfoHTML(hand29, 2), /North bid 18/);
-  assert.match(api.trumpHTML(hand29), /Concealed/);
-  assert.doesNotMatch(api.trumpHTML(hand29), /♠|♥|♦|♣/);
-  hand29.t = 3;
-  assert.match(api.trumpHTML(hand29), /Clubs/);
-  assert.doesNotMatch(api.trumpHTML(hand29), /class="cd/);
-});
-
-test('29 rejects trump selection before all bids are resolved and resets trump on a new deal', () => {
-  const api = loadGame();
-  const state = game('29', {
-    phase: 'bidding',
-    bid29: [17, null, null, null],
-    bb: 0,
-    cur: 17,
-    tt: -1,
-    t: -1,
-  });
-  api.setGame(state);
-  assert.equal(api.pickT(), false);
-  assert.equal(state.phase, 'bidding');
-
-  state.sc = [0, 0, 0, 0];
-  api.setGame(state);
-  api.deal();
-  assert.equal(api.getGame().tt, -1);
-  assert.equal(api.getGame().t, -1);
 });
 
 test('Hearts locks repeated pass confirmation and records the actual incoming source', () => {

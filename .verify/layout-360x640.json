@@ -1,0 +1,213 @@
+{
+  "mode": "seventh",
+  "steps": 48,
+  "events": [
+    {
+      "firstPlay": {
+        "played": "10 of ♣",
+        "trickLen": 4,
+        "trickPlayers": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "cards": [
+          {
+            "text": "J♣♣",
+            "w": 34.2,
+            "h": 49.6,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "5.09091px",
+            "pos": "tc pos1",
+            "left": 87.1,
+            "top": 371.5
+          },
+          {
+            "text": "9♣♣",
+            "w": 34.2,
+            "h": 49.6,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "5.09091px",
+            "pos": "tc pos2",
+            "left": 162.9,
+            "top": 279.4
+          },
+          {
+            "text": "K♣♣",
+            "w": 34.2,
+            "h": 49.6,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "5.09091px",
+            "pos": "tc pos3",
+            "left": 238.7,
+            "top": 371.5
+          },
+          {
+            "text": "10♣♣",
+            "w": 34.2,
+            "h": 49.6,
+            "bg": "rgb(255, 255, 255)",
+            "border": "1px rgba(0, 0, 0, 0.12)",
+            "radius": "5.09091px",
+            "pos": "tc pos0",
+            "left": 162.9,
+            "top": 463.7
+          }
+        ],
+        "hd": {
+          "top": 541.3,
+          "bottom": 630
+        },
+        "tr": {
+          "top": 313.3,
+          "bottom": 479.4,
+          "left": 121.5,
+          "right": 238.5
+        }
+      }
+    }
+  ],
+  "trickSamples": [],
+  "modalLog": [],
+  "peeks": [],
+  "secondDeals": [
+    {
+      "rd": 4,
+      "bb": 0,
+      "phase": "single",
+      "hand": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "totalInPlay": 32,
+      "trumpMode": "suit",
+      "pendingSeventh": false,
+      "trumpCard": null
+    }
+  ],
+  "errors": [],
+  "checks": {},
+  "layout": {
+    "vw": 360,
+    "vh": 640,
+    "boxes": {
+      "top": {
+        "t": 52,
+        "b": 193.2,
+        "h": 141.2,
+        "w": 348
+      },
+      "s2": {
+        "t": 195.8,
+        "b": 308.1,
+        "h": 112.4,
+        "w": 75
+      },
+      "mid": {
+        "t": 313.3,
+        "b": 479.4,
+        "h": 166.2,
+        "w": 348
+      },
+      "tr": {
+        "t": 313.3,
+        "b": 479.4,
+        "h": 166.2,
+        "w": 117.1
+      },
+      "msg": {
+        "t": 484.6,
+        "b": 502.8,
+        "h": 18.2,
+        "w": 88.5
+      },
+      "me": {
+        "t": 505.3,
+        "b": 541.3,
+        "h": 36,
+        "w": 348
+      },
+      "hd": {
+        "t": 541.3,
+        "b": 630,
+        "h": 88.7,
+        "w": 348
+      },
+      "tbl": {
+        "t": 193.2,
+        "b": 505.3,
+        "h": 312.1,
+        "w": 348
+      }
+    },
+    "handRows": 1,
+    "handCards": 7,
+    "handSize": {
+      "w": 46,
+      "h": 66.7
+    },
+    "handBelowViewport": -10,
+    "handAboveViewport": -541.3,
+    "trickVsHandOverlap": 0,
+    "trickVsMeOverlap": 0,
+    "trickVsS2Overlap": 1.3,
+    "trickCardSize": {
+      "w": 36,
+      "h": 52.1
+    }
+  },
+  "final": {
+    "phase": "play",
+    "turn": -1,
+    "bb": 0,
+    "rd": 4,
+    "ld": 0,
+    "trumpMode": "suit",
+    "pendingSeventh": false,
+    "t": -1,
+    "tt": 0,
+    "single": false,
+    "caller": null,
+    "sitter": null,
+    "trumpCard": null,
+    "fullSeventh": {
+      "r": 10,
+      "s": 2
+    },
+    "hand": [
+      7,
+      7,
+      7,
+      7
+    ],
+    "trLen": 4,
+    "trPlayers": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "totalInPlay": 32,
+    "tw": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "sc": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "ask": -1,
+    "over": 0
+  },
+  "consoleErrors": []
+}
